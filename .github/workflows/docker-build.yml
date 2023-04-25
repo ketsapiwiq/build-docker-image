@@ -4,20 +4,21 @@ on:
     - main
  
 jobs:
+
   build:
-  
 
     name: Build Docker image
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Git project
       uses: actions/checkout@v3.5.2
-
-    - name: Liste mes fichiers
-      run: ls
       
     - name: Build l'image
-      run: docker build -t $GITHUB_REPOSITORY:GITHUB_REF_NAME .
+      run: docker build -t ghcr.io/$GITHUB_REPOSITORY:$GITHUB_REF_NAME .
       
-    # docker login
-    # docker push
+    - name: Login Github
+      run: docker login -u ketsapiwiq -p $GITHUB_TOKEN gchr.io
+      
+    - name: Push dans le registre Github
+      run: docker push ghcr.io/$GITHUB_REPOSITORY:$GITHUB_REF_NAME
+      
