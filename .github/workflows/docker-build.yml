@@ -5,8 +5,19 @@ on:
  
 jobs:
   build:
-    name: print variables
+  
+
+    name: Build Docker image
     runs-on: ubuntu-latest
     steps:
-    - name: Affiche variables
-      run: env
+    - name: Checkout Git project
+      uses: actions/checkout@v3.5.2
+
+    - name: Liste mes fichiers
+      run: ls
+      
+    - name: Build l'image
+      run: docker build -t $GITHUB_REPOSITORY:GITHUB_REF_NAME .
+      
+    # docker login
+    # docker push
