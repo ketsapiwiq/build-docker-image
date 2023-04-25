@@ -1,0 +1,12 @@
+on:
+  push:
+    branches:
+    - main
+ 
+jobs:
+  build:
+    name: print variables
+    runs-on: ubuntu-latest
+    steps:
+    - name: Affiche variables
+      run: env
