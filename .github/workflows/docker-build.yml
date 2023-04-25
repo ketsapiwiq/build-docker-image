@@ -13,11 +13,11 @@ jobs:
     - name: Checkout Git project
       uses: actions/checkout@v3.5.2
       
-    - name: Build l'image
-      run: docker build -t ghcr.io/$GITHUB_REPOSITORY:$GITHUB_REF_NAME .
-      
     - name: Login Github
-      run: docker login -u ketsapiwiq -p $GITHUB_TOKEN gchr.io
+      run: docker login -u ketsapiwiq -p $GITHUB_TOKEN ghcr.io
+      
+    - name: Build l'image
+      run: docker build -t ghcr.io/$GITHUB_REPOSITORY:$GITHUB_REF_NAME
       
     - name: Push dans le registre Github
       run: docker push ghcr.io/$GITHUB_REPOSITORY:$GITHUB_REF_NAME
